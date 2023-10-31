@@ -9,17 +9,17 @@ import {
   HttpCode,
   HttpStatus,
 } from '@nestjs/common';
-import { ClassService } from './class.service';
-import { CreateClassDto } from './dto/create-class.dto';
-import { UpdateClassDto } from './dto/update-class.dto';
+import { ClassroomService } from './class.service';
+import { CreateClassroomDto } from './dto/create-class.dto';
+import { UpdateClassroomDto } from './dto/update-class.dto';
 
-@Controller('class')
-export class ClassController {
-  constructor(private readonly classService: ClassService) {}
+@Controller('classroom')
+export class ClassroomController {
+  constructor(private readonly classService: ClassroomService) {}
 
   @Post()
-  async create(@Body() createClassDto: CreateClassDto) {
-    return await this.classService.create(createClassDto);
+  async create(@Body() createClassroomDto: CreateClassroomDto) {
+    return await this.classService.create(createClassroomDto);
   }
 
   @Get()
@@ -35,9 +35,9 @@ export class ClassController {
   @Patch(':id')
   async update(
     @Param('id') id: string,
-    @Body() updateClassDto: UpdateClassDto,
+    @Body() updateClassroomDto: UpdateClassroomDto,
   ) {
-    return await this.classService.update(id, updateClassDto);
+    return await this.classService.update(id, updateClassroomDto);
   }
 
   @Delete(':id')

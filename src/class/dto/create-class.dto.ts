@@ -1,5 +1,5 @@
 import { Gender } from './../shared/enums/gender.enum';
-export class CreateClassDto {
+export class CreateClassroomDto {
   name: string;
   gender: Gender;
   floor: number;

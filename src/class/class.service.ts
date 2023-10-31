@@ -1,15 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { CreateClassDto } from './dto/create-class.dto';
-import { UpdateClassDto } from './dto/update-class.dto';
-import { Class } from './entities/class.entity';
+import { CreateClassroomDto } from './dto/create-class.dto';
+import { UpdateClassroomDto } from './dto/update-class.dto';
+import { Classroom } from './entities/class.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class ClassService {
-  constructor(@InjectRepository(Class) private repository: Repository<Class>) {}
-  async create(createClassDto: CreateClassDto) {
-    return await this.repository.create(createClassDto);
+export class ClassroomService {
+  constructor(@InjectRepository(Classroom) private repository: Repository<Classroom>) {}
+  async create(createClassroomDto: CreateClassroomDto) {
+    return await this.repository.create(createClassroomDto);
   }
 
   async findAll() {
@@ -20,8 +20,8 @@ export class ClassService {
     return await this.repository.findOneBy({ id });
   }
 
-  async update(id: string, updateClassDto: UpdateClassDto) {
-    return await this.repository.update(id, updateClassDto);
+  async update(id: string, updateClassroomDto: UpdateClassroomDto) {
+    return await this.repository.update(id, updateClassroomDto);
   }
 
   async remove(id: string) {

@@ -2,7 +2,7 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { Gender } from '../shared/enums/gender.enum';
 
 @Entity()
-export class Class {
+export class Classroom {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
