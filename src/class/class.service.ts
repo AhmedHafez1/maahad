@@ -3,11 +3,13 @@ import { CreateClassroomDto } from './dto/create-class.dto';
 import { UpdateClassroomDto } from './dto/update-class.dto';
 import { Classroom } from './entities/class.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { MoreThan, Repository } from 'typeorm';
 
 @Injectable()
 export class ClassroomService {
-  constructor(@InjectRepository(Classroom) private repository: Repository<Classroom>) {}
+  constructor(
+    @InjectRepository(Classroom) private repository: Repository<Classroom>,
+  ) {}
   async create(createClassroomDto: CreateClassroomDto) {
     return await this.repository.create(createClassroomDto);
   }
