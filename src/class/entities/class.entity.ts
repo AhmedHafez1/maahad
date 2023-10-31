@@ -9,12 +9,15 @@ export class Class {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ enum: [Gender.MALE, Gender.FEMALE] })
   gender: Gender;
 
   @Column()
   floor: number;
 
-  @Column()
+  @Column({ enum: [1, 2, 3, 4, 5, 6] })
   stage: number;
+
+  @Column()
+  description: string;
 }

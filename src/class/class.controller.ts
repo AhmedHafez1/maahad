@@ -18,28 +18,31 @@ export class ClassController {
   constructor(private readonly classService: ClassService) {}
 
   @Post()
-  create(@Body() createClassDto: CreateClassDto) {
-    return this.classService.create(createClassDto);
+  async create(@Body() createClassDto: CreateClassDto) {
+    return await this.classService.create(createClassDto);
   }
 
   @Get()
-  findAll() {
-    return this.classService.findAll();
+  async findAll() {
+    return await this.classService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.classService.findOne(id);
+  async findOne(@Param('id') id: string) {
+    return await this.classService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClassDto: UpdateClassDto) {
-    return this.classService.update(id, updateClassDto);
+  async update(
+    @Param('id') id: string,
+    @Body() updateClassDto: UpdateClassDto,
+  ) {
+    return await this.classService.update(id, updateClassDto);
   }
 
   @Delete(':id')
   @HttpCode(HttpStatus.NO_CONTENT)
-  remove(@Param('id') id: string) {
-    return this.classService.remove(id);
+  async remove(@Param('id') id: string) {
+    return await this.classService.remove(id);
   }
 }
