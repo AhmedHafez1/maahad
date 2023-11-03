@@ -1,9 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateClassroomDto } from './dto/create-class.dto';
 import { UpdateClassroomDto } from './dto/update-class.dto';
 import { Classroom } from './entities/class.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { MoreThan, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ClassroomService {
@@ -19,7 +19,11 @@ export class ClassroomService {
   }
 
   async findOne(id: string) {
-    return await this.repository.findOneBy({ id });
+    const classroom = await this.repository.findOneBy({ id });
+    if (!classroom) {
+      throw new NotFoundException();
+    }
+    return classroom;
   }
 
   async update(id: string, updateClassroomDto: UpdateClassroomDto) {
