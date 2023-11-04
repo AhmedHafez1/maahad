@@ -3,8 +3,8 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ClassroomModule } from './class/class.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Classroom } from './class/entities/class.entity';
 import { ConfigModule } from '@nestjs/config';
+import { StudentModule } from './student/student.module';
 
 @Module({
   imports: [
@@ -17,9 +17,10 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      entities: [Classroom],
       synchronize: true,
+      autoLoadEntities: true,
     }),
+    StudentModule,
   ],
   controllers: [AppController],
   providers: [AppService],

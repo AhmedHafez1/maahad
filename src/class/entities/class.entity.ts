@@ -1,5 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Gender } from '../shared/enums/gender.enum';
+import { Student } from 'src/student/entities/student.entity';
 
 @Entity()
 export class Classroom {
@@ -20,4 +21,7 @@ export class Classroom {
 
   @Column()
   description: string;
+
+  @OneToMany(() => Student, (student) => student.classroom)
+  students: Student[];
 }
