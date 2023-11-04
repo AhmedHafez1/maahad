@@ -17,7 +17,7 @@ export class ClassroomService {
   }
 
   async findAll() {
-    return await this.repository.find();
+    return await this.repository.find({ relations: { students: true } });
   }
 
   async findOne(id: string) {
@@ -29,7 +29,8 @@ export class ClassroomService {
   }
 
   async update(id: string, updateClassroomDto: UpdateClassroomDto) {
-    return await this.repository.update(id, updateClassroomDto);
+    const classroom = await this.repository.findOneBy({ id });
+    return this.repository.save({ ...classroom, ...updateClassroomDto });
   }
 
   async remove(id: string) {
