@@ -32,7 +32,14 @@ export class StudentService {
   }
 
   async update(id: number, updateStudentDto: UpdateStudentDto) {
-    return await this.studentRepo.update(id, updateStudentDto);
+    const student = await this.studentRepo.findOneBy({ id });
+    if (updateStudentDto.classroomId) {
+      const classroom = await this.classRoomRepo.findOneBy({
+        id: updateStudentDto.classroomId,
+      });
+      classroom && (student.classroom = classroom);
+    }
+    return await this.studentRepo.save({ ...student, ...updateStudentDto });
   }
 
   async remove(id: number) {
