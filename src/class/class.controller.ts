@@ -8,6 +8,7 @@ import {
   Delete,
   HttpCode,
   HttpStatus,
+  Logger,
 } from '@nestjs/common';
 import { ClassroomService } from './class.service';
 import { CreateClassroomDto } from './dto/create-class.dto';
@@ -15,6 +16,7 @@ import { UpdateClassroomDto } from './dto/update-class.dto';
 
 @Controller('classroom')
 export class ClassroomController {
+  private readonly logger = new Logger(ClassroomController.name);
   constructor(private readonly classService: ClassroomService) {}
 
   @Post()
@@ -24,6 +26,9 @@ export class ClassroomController {
 
   @Get()
   async findAll() {
+    this.logger.debug('Something debug test...');
+    this.logger.warn('Something warn test...');
+    this.logger.log('Something log test...');
     return await this.classService.findAll();
   }
 
