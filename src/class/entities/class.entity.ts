@@ -10,13 +10,13 @@ export class Classroom {
   @Column()
   name: string;
 
-  @Column({ enum: [Gender.MALE, Gender.FEMALE] })
+  @Column()
   gender: Gender;
 
   @Column()
   floor: number;
 
-  @Column({ enum: [1, 2, 3, 4, 5, 6] })
+  @Column()
   stage: number;
 
   @Column()

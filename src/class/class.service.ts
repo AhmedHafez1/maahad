@@ -11,7 +11,9 @@ export class ClassroomService {
     @InjectRepository(Classroom) private repository: Repository<Classroom>,
   ) {}
   async create(createClassroomDto: CreateClassroomDto) {
-    return await this.repository.create(createClassroomDto);
+    const classroom = await this.repository.create(createClassroomDto);
+
+    return await this.repository.save(classroom);
   }
 
   async findAll() {

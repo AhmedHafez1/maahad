@@ -26,9 +26,6 @@ export class ClassroomController {
 
   @Get()
   async findAll() {
-    this.logger.debug('Something debug test...');
-    this.logger.warn('Something warn test...');
-    this.logger.log('Something log test...');
     return await this.classService.findAll();
   }
 
