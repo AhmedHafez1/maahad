@@ -15,6 +15,8 @@ export class Student {
   @Column()
   age: number;
 
-  @ManyToOne(() => Classroom, (classroom) => classroom.students)
+  @ManyToOne(() => Classroom, (classroom) => classroom.students, {
+    nullable: false,
+  })
   classroom: Classroom;
 }
