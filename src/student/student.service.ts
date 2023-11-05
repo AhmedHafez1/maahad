@@ -45,4 +45,21 @@ export class StudentService {
   async remove(id: number) {
     return await this.studentRepo.delete({ id });
   }
+
+  // Query builder
+
+  getStudentsBaseQuery() {
+    return this.studentRepo
+      .createQueryBuilder('s')
+      .select(['s.name', 's.age'])
+      .orderBy('s.age', 'DESC');
+  }
+
+  async getStudent(id: number) {
+    return await this.getStudentsBaseQuery()
+      .where('s.id = :id', {
+        id,
+      })
+      .getOne();
+  }
 }
