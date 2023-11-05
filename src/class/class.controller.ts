@@ -26,7 +26,7 @@ export class ClassroomController {
 
   @Get()
   async findAll() {
-    return await this.classService.findAll();
+    return await this.classService.getClassroomsWithStudentCount();
   }
 
   @Get(':id')

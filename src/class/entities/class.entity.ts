@@ -24,4 +24,6 @@ export class Classroom {
 
   @OneToMany(() => Student, (student) => student.classroom)
   students: Student[];
+
+  studentsCount: number;
 }

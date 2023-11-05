@@ -36,4 +36,15 @@ export class ClassroomService {
   async remove(id: string) {
     await this.repository.delete({ id });
   }
+
+  // Query Builder
+
+  async getClassroomsWithStudentCount() {
+    return await this.repository
+      .createQueryBuilder('c')
+      .loadRelationCountAndMap('c.studentsCount', 'c.students')
+      .select(['c.id', 'c.name'])
+      .orderBy('c.name', 'ASC')
+      .getMany();
+  }
 }
